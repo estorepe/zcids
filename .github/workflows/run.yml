@@ -1,5 +1,5 @@
 name: Rclone Installation Workflow
-on: [push]
+on: [push, workflow_dispatch]
 env:
   url: ${{ secrets.url }}
 jobs:
