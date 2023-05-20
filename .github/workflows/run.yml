@@ -1,0 +1,24 @@
+name: Rclone Installation Workflow
+on: [push]
+env:
+  url: ${{ secrets.url }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install rclone if not exists
+        run: |
+          if ! command -v rclone &> /dev/null; then
+            curl https://rclone.org/install.sh | sudo bash
+          fi
+
+      - name: lets begin
+        run: |
+          git clone "$url" work
+          cd work
+          bash run.sh
+          # Add your rclone configuration commands here
